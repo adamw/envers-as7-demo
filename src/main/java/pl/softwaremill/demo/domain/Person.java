@@ -1,4 +1,7 @@
 package pl.softwaremill.demo.domain;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
+
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -8,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 
 @Entity
+@Audited
 public class Person implements java.io.Serializable {
   private static final long serialVersionUID=1L;
 
@@ -18,6 +22,7 @@ public class Person implements java.io.Serializable {
 
   @Version
   @Column(name="version")
+  @NotAudited
   private int version=0;
 
   @Column
