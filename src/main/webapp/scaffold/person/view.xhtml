@@ -43,7 +43,12 @@
 			<c:if test="#{ _editMode != null and _editMode ne 'false' }">
 				<h:commandLink value="Save" action="#{personBean.save()}" />
 			</c:if>
-			
+
+            <h:panelGroup rendered="#{ _editMode == null or _editMode eq 'false' }">
+                <h:link value="History" outcome="history" includeViewParams="true">
+                    <f:param name="id" value="#{personBean.id}"/>
+                </h:link> |
+            </h:panelGroup>
 		    <h:link value="View all" outcome="list" rendered="#{ _editMode == null or _editMode eq 'false' }" /> | 
 		    <h:link value="Edit" outcome="view" includeViewParams="true" rendered="#{ _editMode == null or _editMode eq 'false' }">
 		        <f:param name="edit" value="true" />

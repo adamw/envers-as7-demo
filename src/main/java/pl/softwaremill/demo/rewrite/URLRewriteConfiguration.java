@@ -19,6 +19,7 @@ public class URLRewriteConfiguration extends HttpConfigurationProvider {
             .addRule(Join.path("/").to("/index.jsf"))
             .addRule(Join.path("/{domain}").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/list.jsf").withInboundCorrection())
             .addRule(Join.path("/{domain}/{id}").where("domain").matches(ENTITY_NAME).where("id").matches("\\d+").to("/scaffold/{domain}/view.jsf").withInboundCorrection())
+            .addRule(Join.path("/{domain}/history/{id}").where("domain").matches(ENTITY_NAME).where("id").matches("\\d+").to("/scaffold/{domain}/history.jsf").withInboundCorrection())
             .addRule(Join.path("/{domain}/create").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/create.jsf").withInboundCorrection())
             .addRule(Join.path("/404").to("/404.jsf"))
             .addRule(Join.path("/error").to("/500.jsf"));
