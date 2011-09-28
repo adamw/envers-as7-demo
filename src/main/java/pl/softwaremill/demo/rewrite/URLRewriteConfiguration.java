@@ -15,7 +15,13 @@ import com.ocpsoft.rewrite.servlet.config.rule.TrailingSlash;
 public class URLRewriteConfiguration extends HttpConfigurationProvider {
   private static final String ENTITY_NAME="[a-zA-Z$_0-9]+";
   @Override public Configuration getConfiguration(  ServletContext context){
-    return ConfigurationBuilder.begin().addRule(Join.path("/").to("/index.jsf")).addRule(Join.path("/{domain}").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/list.jsf").withInboundCorrection()).addRule(Join.path("/{domain}/{id}").where("domain").matches(ENTITY_NAME).where("id").matches("\\d+").to("/scaffold/{domain}/view.jsf").withInboundCorrection()).addRule(Join.path("/{domain}/create").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/create.jsf").withInboundCorrection()).addRule(Join.path("/404").to("/404.jsf")).addRule(Join.path("/error").to("/500.jsf"));
+    return ConfigurationBuilder.begin()
+            .addRule(Join.path("/").to("/index.jsf"))
+            .addRule(Join.path("/{domain}").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/list.jsf").withInboundCorrection())
+            .addRule(Join.path("/{domain}/{id}").where("domain").matches(ENTITY_NAME).where("id").matches("\\d+").to("/scaffold/{domain}/view.jsf").withInboundCorrection())
+            .addRule(Join.path("/{domain}/create").where("domain").matches(ENTITY_NAME).to("/scaffold/{domain}/create.jsf").withInboundCorrection())
+            .addRule(Join.path("/404").to("/404.jsf"))
+            .addRule(Join.path("/error").to("/500.jsf"));
   }
   @Override public int priority(){
     return 1;
