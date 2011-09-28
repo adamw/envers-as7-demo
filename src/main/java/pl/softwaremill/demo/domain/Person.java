@@ -6,10 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
-@Entity public class Person implements java.io.Serializable {
+
+@Entity
+public class Person implements java.io.Serializable {
   private static final long serialVersionUID=1L;
-  @Id private @GeneratedValue(strategy=GenerationType.AUTO) @Column(name="id",updatable=false,nullable=false) Long id=null;
-  @Version private @Column(name="version") int version=0;
+
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  @Column(name="id",updatable=false,nullable=false)
+  private Long id=null;
+
+  @Version
+  @Column(name="version")
+  private int version=0;
+
+  @Column
+  private String firstName;
+
+  @Column
+  private String lastName;
+
   public Long getId(){
     return this.id;
   }
@@ -22,14 +38,14 @@ import javax.persistence.Version;
   public void setVersion(  final int version){
     this.version=version;
   }
-  @Column private String firstName;
+
   public String getFirstName(){
     return this.firstName;
   }
   public void setFirstName(  final String firstName){
     this.firstName=firstName;
   }
-  @Column private String lastName;
+
   public String getLastName(){
     return this.lastName;
   }
