@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:m="http://metawidget.org/faces">
+
+<f:metadata>
+    <f:viewParam name="id" value="#{personBean.id}">
+       <!-- <f:validateLongRange minimum="1" />  --> 
+    </f:viewParam>
+    <f:viewParam name="p" value="#{personBean.pagination.page}"/>
+</f:metadata>
+
+<ui:composition template="/resources/scaffold/forge-template.xhtml">
+
+	<ui:param name="pageTitle" value="List Person" />
+
+	<ui:define name="header">
+		Person
+	</ui:define>
+
+	<ui:define name="subheader">
+		Listing your objects
+	</ui:define>
+
+	<ui:define name="footer">
+	</ui:define>
+
+	<ui:define name="main">
+		<h:form id="form">
+		
+		    <h:messages />
+		    
+				
+            <h:link outcome="list" styleClass="right" value="Next #{personBean.pagination.pageSize}" rendered="#{personBean.pagination.hasNextPage}">
+				<f:param name="p" value="#{personBean.pagination.page + 1}" />
+			</h:link>
+				
+			<h:outputText styleClass="right" style="margin-left: 10px; margin-right: 10px;"
+				value="#{personBean.pagination.pageFirstItem + 1}..#{personBean.pagination.pageLastItem + 1}/#{personBean.pagination.itemsCount}" />&nbsp;
+				
+            <h:link outcome="list" styleClass="right" value="Previous #{personBean.pagination.pageSize}" rendered="#{personBean.pagination.hasPreviousPage}">
+				<f:param name="p" value="#{personBean.pagination.page - 1}" />
+			</h:link>
+			
+		    <ul>
+		    <ui:repeat var="entity" value="#{personBean.list}">
+		    
+		        <li><h:link outcome="view">
+		            <f:param name="id" value="#{entity.id}"/>
+		        	<m:metawidget value="#{entity}" readOnly="true" rendererType="simple" style="margin-right: 0.5em"/>
+		        </h:link></li>
+		        
+		    </ui:repeat>
+		    </ul>
+		    <br/>
+		    
+		    <h:link value="Create new" outcome="create" />
+				
+            <h:link outcome="list" styleClass="right" value="Next #{personBean.pagination.pageSize}" rendered="#{personBean.pagination.hasNextPage}">
+				<f:param name="p" value="#{personBean.pagination.page + 1}" />
+			</h:link>
+				
+			<h:outputText styleClass="right" style="margin-left: 10px; margin-right: 10px;"
+				value="#{personBean.pagination.pageFirstItem + 1}..#{personBean.pagination.pageLastItem + 1}/#{personBean.pagination.itemsCount}" />&nbsp;
+				
+            <h:link outcome="list" styleClass="right" value="Previous #{personBean.pagination.pageSize}" rendered="#{personBean.pagination.hasPreviousPage}">
+				<f:param name="p" value="#{personBean.pagination.page - 1}" />
+			</h:link>
+		
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+
+
